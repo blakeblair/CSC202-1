@@ -2,10 +2,16 @@ namespace CSC202_1_Project_1;
 
 public partial class Form1 : Form
 {
+    private void connectedComputeDevice whateverAFileDirectoryFromPCIsCalled { get; set; }
+    private void configSaveLocation whateverAFileDirectoryFromPCIsCalled { get; set; }
+    private void bciDevice howeverWeCallASpecificDeviceAttachedToPC { get; set; }
     public Form1()
     {
         InitializeComponent();
         
+        setComputeDevice();
+        setBCIDevice();
+        setConfigSaveLocation();
         ListBCIOutputs();
         ListDevices();
     }
