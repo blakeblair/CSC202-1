@@ -4,13 +4,6 @@ namespace CSC202_1_Project_1;
 
 public partial class Form1 : Form
 {
-<<<<<<< Updated upstream
-    public Form1()
-    {
-        InitializeComponent();
-        
-        ListBCIOutputs();
-=======
     private bool _debugMode = false;
 
 
@@ -97,7 +90,6 @@ public partial class Form1 : Form
         //setBCIDevice();
         //setConfigSaveLocation();
         ListBciOutputs();
->>>>>>> Stashed changes
         ListDevices();
         OnSelectionChanged();
 
