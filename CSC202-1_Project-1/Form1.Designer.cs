@@ -30,18 +30,20 @@ partial class Form1
     private void InitializeComponent()
     {
         panel1 = new System.Windows.Forms.Panel();
+        curOutput = new System.Windows.Forms.Label();
         listBox1 = new System.Windows.Forms.ListBox();
         BCIOutput_title = new System.Windows.Forms.Label();
         panel3 = new System.Windows.Forms.Panel();
+        curDevice = new System.Windows.Forms.Label();
+        label1 = new System.Windows.Forms.Label();
+        textBox1 = new System.Windows.Forms.TextBox();
+        checkBox1 = new System.Windows.Forms.CheckBox();
         button4 = new System.Windows.Forms.Button();
         Device_Select = new System.Windows.Forms.ComboBox();
         device_settings_title = new System.Windows.Forms.Label();
         button1 = new System.Windows.Forms.Button();
         button2 = new System.Windows.Forms.Button();
         button3 = new System.Windows.Forms.Button();
-        checkBox1 = new System.Windows.Forms.CheckBox();
-        textBox1 = new System.Windows.Forms.TextBox();
-        label1 = new System.Windows.Forms.Label();
         panel1.SuspendLayout();
         panel3.SuspendLayout();
         SuspendLayout();
@@ -50,6 +52,7 @@ partial class Form1
         // 
         panel1.AutoSize = true;
         panel1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+        panel1.Controls.Add(curOutput);
         panel1.Controls.Add(listBox1);
         panel1.Controls.Add(BCIOutput_title);
         panel1.Location = new System.Drawing.Point(42, 56);
@@ -57,6 +60,15 @@ partial class Form1
         panel1.Size = new System.Drawing.Size(522, 809);
         panel1.TabIndex = 0;
         panel1.Paint += panel1_Paint;
+        // 
+        // curOutput
+        // 
+        curOutput.Location = new System.Drawing.Point(48, 81);
+        curOutput.Name = "curOutput";
+        curOutput.Size = new System.Drawing.Size(385, 44);
+        curOutput.TabIndex = 2;
+        curOutput.Text = "Current: ";
+        curOutput.Visible = false;
         // 
         // listBox1
         // 
@@ -82,6 +94,7 @@ partial class Form1
         // 
         panel3.AutoSize = true;
         panel3.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+        panel3.Controls.Add(curDevice);
         panel3.Controls.Add(label1);
         panel3.Controls.Add(textBox1);
         panel3.Controls.Add(checkBox1);
@@ -93,6 +106,43 @@ partial class Form1
         panel3.Size = new System.Drawing.Size(770, 809);
         panel3.TabIndex = 2;
         panel3.Paint += panel3_Paint;
+        // 
+        // curDevice
+        // 
+        curDevice.Location = new System.Drawing.Point(78, 79);
+        curDevice.Name = "curDevice";
+        curDevice.Size = new System.Drawing.Size(275, 45);
+        curDevice.TabIndex = 13;
+        curDevice.Text = "Current: ";
+        curDevice.Visible = false;
+        // 
+        // label1
+        // 
+        label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
+        label1.Location = new System.Drawing.Point(389, 9);
+        label1.Name = "label1";
+        label1.Size = new System.Drawing.Size(314, 23);
+        label1.TabIndex = 12;
+        label1.Text = "Association Name";
+        // 
+        // textBox1
+        // 
+        textBox1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
+        textBox1.Location = new System.Drawing.Point(385, 45);
+        textBox1.Name = "textBox1";
+        textBox1.Size = new System.Drawing.Size(369, 33);
+        textBox1.TabIndex = 11;
+        // 
+        // checkBox1
+        // 
+        checkBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
+        checkBox1.Location = new System.Drawing.Point(92, 185);
+        checkBox1.Name = "checkBox1";
+        checkBox1.Size = new System.Drawing.Size(122, 34);
+        checkBox1.TabIndex = 10;
+        checkBox1.Text = "Debug Mode";
+        checkBox1.UseVisualStyleBackColor = true;
+        checkBox1.CheckedChanged += checkBox1_CheckedChanged;
         // 
         // button4
         // 
@@ -107,12 +157,14 @@ partial class Form1
         // 
         // Device_Select
         // 
+        Device_Select.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
         Device_Select.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
         Device_Select.FormattingEnabled = true;
-        Device_Select.Location = new System.Drawing.Point(86, 88);
+        Device_Select.Location = new System.Drawing.Point(73, 125);
         Device_Select.Name = "Device_Select";
         Device_Select.Size = new System.Drawing.Size(681, 53);
         Device_Select.TabIndex = 8;
+        Device_Select.SelectedIndexChanged += Device_Select_SelectedIndexChanged;
         // 
         // device_settings_title
         // 
@@ -157,33 +209,6 @@ partial class Form1
         button3.Text = "Export Configuration";
         button3.UseVisualStyleBackColor = false;
         // 
-        // checkBox1
-        // 
-        checkBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
-        checkBox1.Location = new System.Drawing.Point(92, 185);
-        checkBox1.Name = "checkBox1";
-        checkBox1.Size = new System.Drawing.Size(122, 34);
-        checkBox1.TabIndex = 10;
-        checkBox1.Text = "Debug Mode";
-        checkBox1.UseVisualStyleBackColor = true;
-        // 
-        // textBox1
-        // 
-        textBox1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
-        textBox1.Location = new System.Drawing.Point(385, 45);
-        textBox1.Name = "textBox1";
-        textBox1.Size = new System.Drawing.Size(369, 33);
-        textBox1.TabIndex = 11;
-        // 
-        // label1
-        // 
-        label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
-        label1.Location = new System.Drawing.Point(389, 9);
-        label1.Name = "label1";
-        label1.Size = new System.Drawing.Size(314, 23);
-        label1.TabIndex = 12;
-        label1.Text = "Association Name";
-        // 
         // Form1
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -203,6 +228,10 @@ partial class Form1
         ResumeLayout(false);
         PerformLayout();
     }
+
+    private System.Windows.Forms.Label curDevice;
+
+    private System.Windows.Forms.Label curOutput;
 
     private System.Windows.Forms.Label label1;
 
