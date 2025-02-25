@@ -29,21 +29,23 @@ partial class Form1
     /// </summary>
     private void InitializeComponent()
     {
+        components = new System.ComponentModel.Container();
         panel1 = new System.Windows.Forms.Panel();
         curOutput = new System.Windows.Forms.Label();
-        listBox1 = new System.Windows.Forms.ListBox();
+        output_list = new System.Windows.Forms.ListBox();
         BCIOutput_title = new System.Windows.Forms.Label();
         panel3 = new System.Windows.Forms.Panel();
         curDevice = new System.Windows.Forms.Label();
         label1 = new System.Windows.Forms.Label();
         textBox1 = new System.Windows.Forms.TextBox();
-        checkBox1 = new System.Windows.Forms.CheckBox();
+        debugcheckbox = new System.Windows.Forms.CheckBox();
         button4 = new System.Windows.Forms.Button();
         Device_Select = new System.Windows.Forms.ComboBox();
         device_settings_title = new System.Windows.Forms.Label();
         button1 = new System.Windows.Forms.Button();
         button2 = new System.Windows.Forms.Button();
         button3 = new System.Windows.Forms.Button();
+        timer1 = new System.Windows.Forms.Timer(components);
         panel1.SuspendLayout();
         panel3.SuspendLayout();
         SuspendLayout();
@@ -53,7 +55,7 @@ partial class Form1
         panel1.AutoSize = true;
         panel1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
         panel1.Controls.Add(curOutput);
-        panel1.Controls.Add(listBox1);
+        panel1.Controls.Add(output_list);
         panel1.Controls.Add(BCIOutput_title);
         panel1.Location = new System.Drawing.Point(42, 56);
         panel1.Name = "panel1";
@@ -70,15 +72,18 @@ partial class Form1
         curOutput.Text = "Current: ";
         curOutput.Visible = false;
         // 
-        // listBox1
+        // output_list
         // 
-        listBox1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
-        listBox1.FormattingEnabled = true;
-        listBox1.Location = new System.Drawing.Point(43, 125);
-        listBox1.Name = "listBox1";
-        listBox1.Size = new System.Drawing.Size(401, 604);
-        listBox1.TabIndex = 1;
-        listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
+        output_list.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
+        output_list.ForeColor = System.Drawing.Color.Black;
+        output_list.FormattingEnabled = true;
+        output_list.Location = new System.Drawing.Point(43, 125);
+        output_list.Margin = new System.Windows.Forms.Padding(16);
+        output_list.Name = "output_list";
+        output_list.ScrollAlwaysVisible = true;
+        output_list.Size = new System.Drawing.Size(401, 484);
+        output_list.TabIndex = 1;
+        output_list.SelectedIndexChanged += output_list_SelectedIndexChanged;
         // 
         // BCIOutput_title
         // 
@@ -97,7 +102,7 @@ partial class Form1
         panel3.Controls.Add(curDevice);
         panel3.Controls.Add(label1);
         panel3.Controls.Add(textBox1);
-        panel3.Controls.Add(checkBox1);
+        panel3.Controls.Add(debugcheckbox);
         panel3.Controls.Add(button4);
         panel3.Controls.Add(Device_Select);
         panel3.Controls.Add(device_settings_title);
@@ -133,16 +138,16 @@ partial class Form1
         textBox1.Size = new System.Drawing.Size(369, 33);
         textBox1.TabIndex = 11;
         // 
-        // checkBox1
+        // debugcheckbox
         // 
-        checkBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
-        checkBox1.Location = new System.Drawing.Point(92, 185);
-        checkBox1.Name = "checkBox1";
-        checkBox1.Size = new System.Drawing.Size(122, 34);
-        checkBox1.TabIndex = 10;
-        checkBox1.Text = "Debug Mode";
-        checkBox1.UseVisualStyleBackColor = true;
-        checkBox1.CheckedChanged += checkBox1_CheckedChanged;
+        debugcheckbox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
+        debugcheckbox.Location = new System.Drawing.Point(92, 185);
+        debugcheckbox.Name = "debugcheckbox";
+        debugcheckbox.Size = new System.Drawing.Size(122, 34);
+        debugcheckbox.TabIndex = 10;
+        debugcheckbox.Text = "Debug Mode";
+        debugcheckbox.UseVisualStyleBackColor = true;
+        debugcheckbox.CheckedChanged += checkBox1_CheckedChanged;
         // 
         // button4
         // 
@@ -215,7 +220,7 @@ partial class Form1
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         AutoScroll = true;
         AutoSize = true;
-        ClientSize = new System.Drawing.Size(1384, 774);
+        ClientSize = new System.Drawing.Size(1418, 774);
         Controls.Add(button3);
         Controls.Add(button2);
         Controls.Add(button1);
@@ -229,6 +234,8 @@ partial class Form1
         PerformLayout();
     }
 
+    private System.Windows.Forms.Timer timer1;
+
     private System.Windows.Forms.Label curDevice;
 
     private System.Windows.Forms.Label curOutput;
@@ -237,13 +244,13 @@ partial class Form1
 
     private System.Windows.Forms.TextBox textBox1;
 
-    private System.Windows.Forms.CheckBox checkBox1;
+    private System.Windows.Forms.CheckBox debugcheckbox;
 
     private System.Windows.Forms.Button button4;
 
     private System.Windows.Forms.ComboBox Device_Select;
 
-    private System.Windows.Forms.ListBox listBox1;
+    private System.Windows.Forms.ListBox output_list;
 
     private System.Windows.Forms.Label device_settings_title;
 

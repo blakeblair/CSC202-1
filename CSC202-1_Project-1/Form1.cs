@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Drawing.Configuration;
 
 namespace CSC202_1_Project_1;
 
@@ -116,23 +117,45 @@ public partial class Form1 : Form
         }
     }
 
-    private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+    private void output_list_SelectedIndexChanged(object sender, EventArgs e)
     {
-        _currentSelectionBciOutput = listBox1.SelectedIndex;
+        _currentSelectionBciOutput = output_list.SelectedIndex;
         OnSelectionChanged();
     }
+    
+    /*
+     //This section requires Drawmode Owner Fixed or Owner Variable, which have been set back to normal until I can finish figuring out the Bounds issue causing list items to overlap.
+     
+    private void output_list_DrawItem(object sender, DrawItemEventArgs e)
+    {
+        var backColor = this.BackColor;         //Default BackColor
+        var textColor = this.ForeColor;         //Default ForeColor
+        var data = output_list.Text;
+        if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
+        {
+            backColor = Color.Green;        //Seletion BackColor
+            textColor = Color.White;           //Seletion ForeColor
+        }
+        e.Graphics.Clear(this.BackColor); //have to clear after every event to prevent overwriting list positions
+        using (var brush = new SolidBrush(backColor))
+            e.Graphics.FillRectangle(brush, e.Bounds);
+        //TextRenderer.DrawText(e.Graphics, data, output_list.Font, e.Bounds, textColor,
+            //TextFormatFlags.VerticalCenter | TextFormatFlags.Left);
+            TextRenderer.DrawText(e.Graphics, data, output_list.Font, e.Bounds, textColor);
+    }
+    */
+    
 
     private void ListBciOutputs()
     {
-        listBox1.DataSource = _bciOutputs;
+        output_list.DataSource = _bciOutputs;
     }
 
     private void ListDevices()
     {
         Device_Select.DataSource = _devices;
     }
-
-
+    
     private void panel1_Paint(object sender, PaintEventArgs e)
     {
 
@@ -151,7 +174,7 @@ public partial class Form1 : Form
 
     private void checkBox1_CheckedChanged(object sender, EventArgs e)
     {
-        DebugMode = checkBox1.Checked;
+        DebugMode = debugcheckbox.Checked;
     }
 
     private void DebugModeEnabled()
