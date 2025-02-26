@@ -1,0 +1,8 @@
+
+private void lFocusPassing(float sender, EventArgs e)
+{
+float lFocusValue;
+if(!float.TryParse(txtLFocus.Text, out lFocusValue))
+{
+	//however I want to handle my float value for sending
+}
