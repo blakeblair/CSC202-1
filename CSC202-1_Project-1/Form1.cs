@@ -144,8 +144,66 @@ public partial class Form1 : Form
             TextRenderer.DrawText(e.Graphics, data, output_list.Font, e.Bounds, textColor);
     }
     */
-    
 
+    private void lockToggle_Click_1(object sender, EventArgs e)
+    {
+        List<Control> affectedControls = new List<Control>();
+        affectedControls.Add(output_list);
+        affectedControls.Add(Device_Select);
+        System.Windows.Forms.CheckBox[] willToggle = GetChecks();
+        foreach (var item in willToggle)
+        {
+            if (item.Checked)
+            {
+                if (item.Name == "lock1")
+                {
+                    output_list.Tag = "willtoggle";
+                }
+                else if (item.Name == "lock2")
+                {
+                    Device_Select.Tag = "willtoggle";
+                }
+            }
+            else
+            {
+                if (item.Name == "lock1")
+                {
+                    output_list.Tag = "nottoggle";
+                }
+                else if (item.Name == "lock2")
+                {
+                    Device_Select.Tag = "nottoggle";
+                }
+            }
+        }
+
+        foreach (Control c in affectedControls)
+        {
+            InputLocker(c);
+            Console.WriteLine(c.Name);
+        }
+    }
+    private void InputLocker(System.Windows.Forms.Control controller)
+    {
+        try
+        {
+            if (controller.Tag.ToString() == "willtoggle")
+            {
+                controller.Enabled = !controller.Enabled;
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    private CheckBox[] GetChecks()
+    {
+        return [lock1, lock2];
+    }
+    
     private void ListBciOutputs()
     {
         output_list.DataSource = _bciOutputs;
@@ -187,6 +245,16 @@ public partial class Form1 : Form
     {
         curDevice.Visible = false;
         curOutput.Visible = false;
+    }
+
+    private void lock1_CheckedChanged(object sender, EventArgs e)
+    {
+        
+    }
+
+    private void lock2_CheckedChanged(object sender, EventArgs e)
+    {
+        
     }
 }
 

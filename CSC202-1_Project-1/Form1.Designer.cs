@@ -31,10 +31,13 @@ partial class Form1
     {
         components = new System.ComponentModel.Container();
         panel1 = new System.Windows.Forms.Panel();
+        lock1 = new System.Windows.Forms.CheckBox();
+        lockToggle = new System.Windows.Forms.Button();
         curOutput = new System.Windows.Forms.Label();
         output_list = new System.Windows.Forms.ListBox();
         BCIOutput_title = new System.Windows.Forms.Label();
         panel3 = new System.Windows.Forms.Panel();
+        lock2 = new System.Windows.Forms.CheckBox();
         curDevice = new System.Windows.Forms.Label();
         label1 = new System.Windows.Forms.Label();
         textBox1 = new System.Windows.Forms.TextBox();
@@ -54,6 +57,8 @@ partial class Form1
         // 
         panel1.AutoSize = true;
         panel1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+        panel1.Controls.Add(lock1);
+        panel1.Controls.Add(lockToggle);
         panel1.Controls.Add(curOutput);
         panel1.Controls.Add(output_list);
         panel1.Controls.Add(BCIOutput_title);
@@ -62,6 +67,26 @@ partial class Form1
         panel1.Size = new System.Drawing.Size(522, 809);
         panel1.TabIndex = 0;
         panel1.Paint += panel1_Paint;
+        // 
+        // lock1
+        // 
+        lock1.Location = new System.Drawing.Point(10, 125);
+        lock1.Name = "lock1";
+        lock1.Size = new System.Drawing.Size(32, 35);
+        lock1.TabIndex = 15;
+        lock1.Text = "L";
+        lock1.UseVisualStyleBackColor = true;
+        lock1.CheckedChanged += lock1_CheckedChanged;
+        // 
+        // lockToggle
+        // 
+        lockToggle.Location = new System.Drawing.Point(419, 9);
+        lockToggle.Name = "lockToggle";
+        lockToggle.Size = new System.Drawing.Size(89, 40);
+        lockToggle.TabIndex = 14;
+        lockToggle.Text = "Toggle Locks";
+        lockToggle.UseVisualStyleBackColor = true;
+        lockToggle.Click += lockToggle_Click_1;
         // 
         // curOutput
         // 
@@ -83,6 +108,7 @@ partial class Form1
         output_list.ScrollAlwaysVisible = true;
         output_list.Size = new System.Drawing.Size(401, 484);
         output_list.TabIndex = 1;
+        output_list.Tag = "unlocked";
         output_list.SelectedIndexChanged += output_list_SelectedIndexChanged;
         // 
         // BCIOutput_title
@@ -99,6 +125,7 @@ partial class Form1
         // 
         panel3.AutoSize = true;
         panel3.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+        panel3.Controls.Add(lock2);
         panel3.Controls.Add(curDevice);
         panel3.Controls.Add(label1);
         panel3.Controls.Add(textBox1);
@@ -111,6 +138,16 @@ partial class Form1
         panel3.Size = new System.Drawing.Size(770, 809);
         panel3.TabIndex = 2;
         panel3.Paint += panel3_Paint;
+        // 
+        // lock2
+        // 
+        lock2.Location = new System.Drawing.Point(24, 139);
+        lock2.Name = "lock2";
+        lock2.Size = new System.Drawing.Size(43, 21);
+        lock2.TabIndex = 14;
+        lock2.Text = "L";
+        lock2.UseVisualStyleBackColor = true;
+        lock2.CheckedChanged += lock2_CheckedChanged;
         // 
         // curDevice
         // 
@@ -169,6 +206,7 @@ partial class Form1
         Device_Select.Name = "Device_Select";
         Device_Select.Size = new System.Drawing.Size(681, 53);
         Device_Select.TabIndex = 8;
+        Device_Select.Tag = "unlocked";
         Device_Select.SelectedIndexChanged += Device_Select_SelectedIndexChanged;
         // 
         // device_settings_title
@@ -233,6 +271,11 @@ partial class Form1
         ResumeLayout(false);
         PerformLayout();
     }
+
+    private System.Windows.Forms.CheckBox lock2;
+    private System.Windows.Forms.CheckBox lock1;
+
+    private System.Windows.Forms.Button lockToggle;
 
     private System.Windows.Forms.Timer timer1;
 
